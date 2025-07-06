@@ -362,9 +362,12 @@ a:focus, a:focus-visible {
     column-gap: 1rem;
   }
 }
-.header .logo {
+.header .logo img {
   grid-column: 2/4;
   grid-row: 1;
+  width: 300px;
+  position: relative;
+  left: 166px;
 }
 .header .menu {
   align-items: center;
