@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-32x32.png"
+    />
+   
+    <link rel="stylesheet" href="sass/styles.css" />
+    <title>Frontend Mentor | Creative single page site</title>
+  </head>
+
+  <body>
+    <div class="grid_wrapper">
+      <header class="header">
+        <a class="logo" href="#">
+          <span class="sr-only">Creative - Homepage</span>
+          <img
+          
+          src="./assets/desktop/logo.svg"
+          alt="Creative company logo"
+        />
+        </a>
+         <div class="menu">
+          <button class="hamburger-menu mobile-only" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <div class="mobile-nav" id="mobile-navigation">
+            <nav aria-label="Main">
+              <ul>
+              <li><a href="#" class="link">Sobre</a></li>
+              <li><a href="#" class="link">Serviços</a></li>
+              <li><a href="#" class="link">Projetos</a></li>
+              </ul>
+            </nav>
+            <button class="button--menu button--primary" href="#">
+              Schedule a Call
+            </button>
+          </div>
+
+          <div class="desktop-nav tablet-desktop">
+            <nav aria-label="Main">
+              <ul>
+              <li><a href="#" class="link" title="About">Sobre</a></li>
+              <li><a href="#" class="link" title="Service">Serviços</a></li>
+              <li><a href="#" class="link" title="Projects">Projetos</a></li>
+              </ul>
+              <a href="layoutValidation.html" class="button--menu button--secondary">
+                Cadastre-se
+              </a>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="hero">
+          <div class="hero__image" role="img" alt="Two men sitting in office and working on computers and
+          laptops">
+          </div>
+          <div class="hero__text container">
+            <h1>Instituto Federal do Mato Grosso do Sul.</h1>
+            <p>
+              O principal diferencial do ensino no IFMS é que a instituição 
+              foi criada para desenvolver de forma especializada a educação 
+              profissional e tecnológica, integrando-se os diferentes níveis 
+              às dimensões do trabalho, da ciência e da tecnologia
+            </p>
+            <a href="#" class="button--primary">Entenda mais</a>
+          </div>
+        </section>
+
+        <section class="details">
+          <div class="details__image" >
+          </div>
+
+          <div class="details__design">
+            <h2 class="details__headline color--light">
+              <span class="color--primary">O futuro</span> nos <br />motiva.
+            </h2>
+            <p class="details__paragraph color--light">
+              A oferta de cursos no IFMS vai desde a educação básica até a educação superior, 
+              com opções de cursos presenciais e a distância, na modalidade educação profissional.
+            </p>
+            <button href="#" class="details__button button--underline"
+              >Agende um horário</button>
+          </div>
+
+          <div class="details__approach">
+            <h2>Conheça nossa cultura e principais valores.</h2>
+          </div>
+
+          <div class="details__list">
+            <ol>
+              <li>
+                <h3>Inovação.</h3>
+                <p>
+                  Buscamos constantemente novas ideias, tecnologias e metodologias 
+                  para transformar a educação, promover a ciência e contribuir com 
+                  soluções criativas para os desafios da sociedade.
+                </p>
+              </li>
+
+              <li>
+                <h3>Ética.</h3>
+                <p>
+                  Atuamos com integridade, respeito e responsabilidade, prezando pela 
+                  transparência em todas as nossas ações.
+                </p>
+              </li>
+
+              <li>
+                <h3>Compromisso com o desenvolvimento local e regional.</h3>
+                <p>
+                  Por meio da educação, da pesquisa e da extensão, contribuímos para
+                  o fortalecimento econômico, social e cultural das regiões atendidas pelo IFMS.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="slider">
+          <div class="slides">
+            <div class="slider__image active slide0">
+              <div class="slider__content">
+                <h3>Entenda sobre metodologias de desenvolvimento.</h3>
+                <p>IFMS - 2025</p>
+              </div>
+            </div>
+
+            <div class="slider__image slide1">
+              <div class="slider__content">
+                <h3>Desenvolva projetos em diferentes áreas.</h3>
+                <p>IFMS - 2025</p>
+              </div>
+            </div>
+
+            <div class="slider__image slide2">
+              <div class="slider__content">
+                <h3>Aplicabilidade no mercado de tabalho.</h3>
+                <p>IFMS - 2025</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="slider__text">
+            <h2 class="slide__headline enabled">
+              Conhecimento &<br /> Aplicação,
+            </h2>
+            <h2 class="slide__headline">
+              Criação &<br />
+              Marketing
+            </h2>
+            <h2 class="slide__headline">
+              Empreender &<br />
+              Inovar.
+            </h2>
+
+            <div class="slide__buttons">
+              <button
+                href="javascript:void(0)"
+                class="button--arrow"
+                id="buttonBackward"
+              >
+                <div class="sr-only">previous slide</div>
+                <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+                  <g
+                    transform="matrix(-1 0 0 1 40 0)"
+                    stroke="#F94F4F"
+                    fill="none"
+                    fill-rule="evenodd"
+                  >
+                    <circle cx="20" cy="20" r="19.5" />
+                    <path stroke-width="2" d="M17.5 15l5 5-5 5" />
+                  </g></svg></button>
+
+              <button href="javascript:void(0)"
+                 class="button--arrow"
+                 id="buttonForward">
+                <div class="sr-only">next slide</div>
+                <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+                  <g stroke="#F94F4F" fill="none" fill-rule="evenodd">
+                    <circle cx="20" cy="20" r="19.5" />
+                    <path stroke-width="2" d="M17.5 15l5 5-5 5" />
+                  </g>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer footer__container">
+        <h2>Vamos construir o futuro do ensino tecnológico juntos.</h2>
+        <button href="layoutValidation.html" class="button--primary" onclick="window.location.href='./layoutValidation.html'">
+          Cadastre-se já!
+        </button>
+      </footer>
+    </div>
+
+    <script src="./js/navigation.js"></script>
+    <script src="./js/slider.js"></script>
+  </body>
+</html>
