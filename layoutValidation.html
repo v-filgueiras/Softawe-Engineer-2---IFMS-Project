@@ -269,7 +269,7 @@
         <div class="form-section active" id="loginForm">
             <form id="loginFormElement">
                 <div class="form-group">
-                    <label for="loginEmail">Email Institucional</label>
+                    <label for="loginEmail">Email</label>
                     <input type="email" id="loginEmail" name="email" required>
                     <div class="error-message" id="loginEmailError"></div>
                 </div>
@@ -297,7 +297,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="signupEmail">Email Institucional</label>
+                    <label for="signupEmail">Email</label>
                     <input type="email" id="signupEmail" name="email" required>
                     <div class="error-message" id="signupEmailError"></div>
                     <div class="success-message" id="signupEmailSuccess"></div>
@@ -334,310 +334,299 @@
     </div>
 
     <script>
-
         function toggleForm() {
-            const loginForm = document.getElementById('loginForm');
-            const signupForm = document.getElementById('signupForm');
-            
-            if (loginForm.classList.contains('active')) {
-                loginForm.classList.remove('active');
-                signupForm.classList.add('active');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    
+    if (loginForm.classList.contains('active')) {
+        loginForm.classList.remove('active');
+        signupForm.classList.add('active');
+    } else {
+        signupForm.classList.remove('active');
+        loginForm.classList.add('active');
+    }
+    
+    clearAllErrors();
+    document.getElementById('loginFormElement').reset();
+    document.getElementById('signupFormElement').reset();
+}
+
+function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function validatePassword(password) {
+    const requirements = {
+        length: password.length >= 8,
+        upper: /[A-Z]/.test(password),
+        lower: /[a-z]/.test(password),
+        number: /\d/.test(password),
+        special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+    };
+    
+    return requirements;
+}
+
+function updatePasswordRequirements(password) {
+    const requirements = validatePassword(password);
+    
+    Object.keys(requirements).forEach(req => {
+        const element = document.getElementById(`req-${req}`);
+        if (element) {
+            if (requirements[req]) {
+                element.classList.add('met');
             } else {
-                signupForm.classList.remove('active');
-                loginForm.classList.add('active');
-            }
-            
-            clearAllErrors();
-            document.getElementById('loginFormElement').reset();
-            document.getElementById('signupFormElement').reset();
-        }
-
-        function validateEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
-        function validateIFMSEmail(email) {
-            const ifmsRegex = /^[^\s@]+@(ifms\.edu\.br|estudante\.ifms\.edu\.br|academico\.ifms\.edu\.br)$/i;
-            return ifmsRegex.test(email);
-        }
-
-        function validatePassword(password) {
-            const requirements = {
-                length: password.length >= 8,
-                upper: /[A-Z]/.test(password),
-                lower: /[a-z]/.test(password),
-                number: /\d/.test(password),
-                special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
-            };
-            
-            return requirements;
-        }
-
-        function updatePasswordRequirements(password) {
-            const requirements = validatePassword(password);
-            
-            Object.keys(requirements).forEach(req => {
-                const element = document.getElementById(`req-${req}`);
-                if (element) {
-                    if (requirements[req]) {
-                        element.classList.add('met');
-                    } else {
-                        element.classList.remove('met');
-                    }
-                }
-            });
-        }
-
-        function showError(elementId, message) {
-            const errorElement = document.getElementById(elementId);
-            const inputElement = document.getElementById(elementId.replace('Error', ''));
-            
-            if (errorElement && inputElement) {
-                errorElement.textContent = message;
-                errorElement.style.display = 'block';
-                inputElement.classList.add('invalid');
-                inputElement.classList.remove('valid');
+                element.classList.remove('met');
             }
         }
+    });
+}
 
-        function showSuccess(elementId, message) {
-            const successElement = document.getElementById(elementId);
-            const inputElement = document.getElementById(elementId.replace('Success', ''));
-            
-            if (successElement && inputElement) {
-                successElement.textContent = message;
-                successElement.style.display = 'block';
-                inputElement.classList.add('valid');
-                inputElement.classList.remove('invalid');
-            }
+function showError(elementId, message) {
+    const errorElement = document.getElementById(elementId);
+    const inputElement = document.getElementById(elementId.replace('Error', ''));
+    
+    if (errorElement && inputElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+        inputElement.classList.add('invalid');
+        inputElement.classList.remove('valid');
+    }
+}
+
+function showSuccess(elementId, message) {
+    const successElement = document.getElementById(elementId);
+    const inputElement = document.getElementById(elementId.replace('Success', ''));
+    
+    if (successElement && inputElement) {
+        successElement.textContent = message;
+        successElement.style.display = 'block';
+        inputElement.classList.add('valid');
+        inputElement.classList.remove('invalid');
+    }
+}
+
+function clearError(elementId) {
+    const errorElement = document.getElementById(elementId);
+    const successElement = document.getElementById(elementId.replace('Error', 'Success'));
+    const inputElement = document.getElementById(elementId.replace('Error', ''));
+    
+    if (errorElement) {
+        errorElement.style.display = 'none';
+        errorElement.textContent = '';
+    }
+    
+    if (successElement) {
+        successElement.style.display = 'none';
+        successElement.textContent = '';
+    }
+    
+    if (inputElement) {
+        inputElement.classList.remove('invalid', 'valid');
+    }
+}
+
+function clearAllErrors() {
+    const errorElements = document.querySelectorAll('.error-message, .success-message');
+    const inputElements = document.querySelectorAll('input');
+    
+    errorElements.forEach(el => {
+        el.style.display = 'none';
+        el.textContent = '';
+    });
+    
+    inputElements.forEach(el => {
+        el.classList.remove('invalid', 'valid');
+    });
+}
+
+function showSuccessPopup(message) {
+    const popup = document.createElement('div');
+    popup.className = 'success-popup';
+    popup.textContent = message;
+    document.body.appendChild(popup);
+    
+    setTimeout(() => popup.classList.add('show'), 100);
+    
+    setTimeout(() => {
+        popup.classList.remove('show');
+        setTimeout(() => document.body.removeChild(popup), 300);
+    }, 3000);
+}
+
+function showEasterEgg() {
+    const kofi = document.createElement('div');
+    kofi.className = 'kofi-animation';
+    kofi.textContent = '☕';
+    document.body.appendChild(kofi);
+    
+    setTimeout(() => {
+        document.body.removeChild(kofi);
+    }, 2000);
+    
+    showSuccessPopup('Hora do cafezinho! ☕ Desenvolvido com ❤️');
+}
+
+// Event listener para validação do email no signup
+document.getElementById('signupEmail').addEventListener('input', function() {
+    const email = this.value.trim();
+    
+    if (email === '') {
+        clearError('signupEmailError');
+        return;
+    }
+    
+    if (!validateEmail(email)) {
+        showError('signupEmailError', 'Email inválido');
+        return;
+    }
+    
+    clearError('signupEmailError');
+    showSuccess('signupEmailSuccess', 'Email válido ✓');
+});
+
+// Event listener para validação da senha no signup
+document.getElementById('signupPassword').addEventListener('input', function() {
+    const password = this.value;
+    updatePasswordRequirements(password);
+    
+    if (password === '') { 
+        clearError('signupPasswordError');
+        return;
+    }
+    
+    const requirements = validatePassword(password);
+    const allMet = Object.values(requirements).every(req => req);
+    
+    if (!allMet) {
+        showError('signupPasswordError', 'A senha não atende aos requisitos');
+    } else {
+        clearError('signupPasswordError');
+    }
+});
+
+// Event listener para confirmação de senha no signup
+document.getElementById('signupConfirmPassword').addEventListener('input', function() {
+    const password = document.getElementById('signupPassword').value;
+    const confirmPassword = this.value;
+    
+    if (confirmPassword === '') {
+        clearError('signupConfirmPasswordError');
+        return;
+    }
+    
+    if (password !== confirmPassword) {
+        showError('signupConfirmPasswordError', 'As senhas não coincidem');
+    } else {
+        clearError('signupConfirmPasswordError');
+    }
+});
+
+// Event listener para o formulário de login
+document.getElementById('loginFormElement').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    
+    let hasErrors = false;
+
+    if (!email) {
+        showError('loginEmailError', 'Email é obrigatório');
+        hasErrors = true;
+    } else if (!validateEmail(email)) {
+        showError('loginEmailError', 'Email inválido');
+        hasErrors = true;
+    } else {
+        clearError('loginEmailError');
+    }
+
+    if (!password) {
+        showError('loginPasswordError', 'Senha é obrigatória');
+        hasErrors = true;
+    } else {
+        clearError('loginPasswordError');
+    }
+    
+    if (!hasErrors) {
+        const loginData = {
+            email: email,
+            password: password
+        };
+        
+        console.log('Login data for PostgreSQL:', loginData);
+        showSuccessPopup('Login realizado com sucesso! 🎉');
+    }
+});
+
+// Event listener para o formulário de signup
+document.getElementById('signupFormElement').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('signupName').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    const password = document.getElementById('signupPassword').value;
+    const confirmPassword = document.getElementById('signupConfirmPassword').value;
+    
+    let hasErrors = false;
+    
+    if (!name) {
+        showError('signupNameError', 'Nome é obrigatório');
+        hasErrors = true;
+    } else if (name.length < 2) {
+        showError('signupNameError', 'Nome deve ter pelo menos 2 caracteres');
+        hasErrors = true;
+    } else {
+        clearError('signupNameError');
+    }
+    
+    if (!email) {
+        showError('signupEmailError', 'Email é obrigatório');
+        hasErrors = true;
+    } else if (!validateEmail(email)) {
+        showError('signupEmailError', 'Email inválido');
+        hasErrors = true;
+    } else {
+        clearError('signupEmailError');
+    }
+    
+    if (!password) {
+        showError('signupPasswordError', 'Senha é obrigatória');
+        hasErrors = true;
+    } else {
+        const requirements = validatePassword(password);
+        const allMet = Object.values(requirements).every(req => req);
+        
+        if (!allMet) {
+            showError('signupPasswordError', 'A senha não atende aos requisitos');
+            hasErrors = true;
+        } else {
+            clearError('signupPasswordError');
         }
+    }
 
-        function clearError(elementId) {
-            const errorElement = document.getElementById(elementId);
-            const successElement = document.getElementById(elementId.replace('Error', 'Success'));
-            const inputElement = document.getElementById(elementId.replace('Error', ''));
-            
-            if (errorElement) {
-                errorElement.style.display = 'none';
-                errorElement.textContent = '';
-            }
-            
-            if (successElement) {
-                successElement.style.display = 'none';
-                successElement.textContent = '';
-            }
-            
-            if (inputElement) {
-                inputElement.classList.remove('invalid', 'valid');
-            }
-        }
-
-        function clearAllErrors() {
-            const errorElements = document.querySelectorAll('.error-message, .success-message');
-            const inputElements = document.querySelectorAll('input');
-            
-            errorElements.forEach(el => {
-                el.style.display = 'none';
-                el.textContent = '';
-            });
-            
-            inputElements.forEach(el => {
-                el.classList.remove('invalid', 'valid');
-            });
-        }
-
-        function showSuccessPopup(message) {
-            const popup = document.createElement('div');
-            popup.className = 'success-popup';
-            popup.textContent = message;
-            document.body.appendChild(popup);
-            
-            setTimeout(() => popup.classList.add('show'), 100);
-            
-            setTimeout(() => {
-                popup.classList.remove('show');
-                setTimeout(() => document.body.removeChild(popup), 300);
-            }, 3000);
-        }
-
-        function showEasterEgg() {
-            const kofi = document.createElement('div');
-            kofi.className = 'kofi-animation';
-            kofi.textContent = '☕';
-            document.body.appendChild(kofi);
-            
-            setTimeout(() => {
-                document.body.removeChild(kofi);
-            }, 2000);
-            
-            showSuccessPopup('Hora do cafezinho! ☕ Desenvolvido com ❤️ para o IFMS');
-        }
-
-        document.getElementById('signupEmail').addEventListener('input', function() {
-            const email = this.value.trim();
-            
-            if (email === '') {
-                clearError('signupEmailError');
-                return;
-            }
-            
-            if (!validateEmail(email)) {
-                showError('signupEmailError', 'Email inválido');
-                return;
-            }
-            
-            if (!validateIFMSEmail(email)) {
-                showError('signupEmailError', 'Use um email institucional do IFMS (@ifms.edu.br)');
-                return;
-            }
-            
-            clearError('signupEmailError');
-            showSuccess('signupEmailSuccess', 'Email válido ✓');
-        });
-
-        document.getElementById('signupPassword').addEventListener('input', function() {
-            const password = this.value;
-            updatePasswordRequirements(password);
-            
-            if (password === '') {
-                clearError('signupPasswordError');
-                return;
-            }
-            
-            const requirements = validatePassword(password);
-            const allMet = Object.values(requirements).every(req => req);
-            
-            if (!allMet) {
-                showError('signupPasswordError', 'A senha não atende aos requisitos');
-            } else {
-                clearError('signupPasswordError');
-            }
-        });
-
-        document.getElementById('signupConfirmPassword').addEventListener('input', function() {
-            const password = document.getElementById('signupPassword').value;
-            const confirmPassword = this.value;
-            
-            if (confirmPassword === '') {
-                clearError('signupConfirmPasswordError');
-                return;
-            }
-            
-            if (password !== confirmPassword) {
-                showError('signupConfirmPasswordError', 'As senhas não coincidem');
-            } else {
-                clearError('signupConfirmPasswordError');
-            }
-        });
-
-        document.getElementById('loginFormElement').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPassword').value;
-            
-            let hasErrors = false;
-
-            if (!email) {
-                showError('loginEmailError', 'Email é obrigatório');
-                hasErrors = true;
-            } else if (!validateEmail(email)) {
-                showError('loginEmailError', 'Email inválido');
-                hasErrors = true;
-            } else {
-                clearError('loginEmailError');
-            }
-
-            if (!password) {
-                showError('loginPasswordError', 'Senha é obrigatória');
-                hasErrors = true;
-            } else {
-                clearError('loginPasswordError');
-            }
-            
-            if (!hasErrors) {
-                const loginData = {
-                    email: email,
-                    password: password
-                };
-                
-                console.log('Login data for PostgreSQL:', loginData);
-                showSuccessPopup('Login realizado com sucesso! 🎉');
-                
-            }
-        });
-
-        document.getElementById('signupFormElement').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('signupName').value.trim();
-            const email = document.getElementById('signupEmail').value.trim();
-            const password = document.getElementById('signupPassword').value;
-            const confirmPassword = document.getElementById('signupConfirmPassword').value;
-            
-            let hasErrors = false;
-            
-            if (!name) {
-                showError('signupNameError', 'Nome é obrigatório');
-                hasErrors = true;
-            } else if (name.length < 2) {
-                showError('signupNameError', 'Nome deve ter pelo menos 2 caracteres');
-                hasErrors = true;
-            } else {
-                clearError('signupNameError');
-            }
-            
-            if (!email) {
-                showError('signupEmailError', 'Email é obrigatório');
-                hasErrors = true;
-            } else if (!validateEmail(email)) {
-                showError('signupEmailError', 'Email inválido');
-                hasErrors = true;
-            } else if (!validateIFMSEmail(email)) {
-                showError('signupEmailError', 'Use um email institucional do IFMS');
-                hasErrors = true;
-            } else {
-                clearError('signupEmailError');
-            }
-            
-            if (!password) {
-                showError('signupPasswordError', 'Senha é obrigatória');
-                hasErrors = true;
-            } else {
-                const requirements = validatePassword(password);
-                const allMet = Object.values(requirements).every(req => req);
-                
-                if (!allMet) {
-                    showError('signupPasswordError', 'A senha não atende aos requisitos');
-                    hasErrors = true;
-                } else {
-                    clearError('signupPasswordError');
-                }
-            }
-
-            if (!confirmPassword) {
-                showError('signupConfirmPasswordError', 'Confirmação de senha é obrigatória');
-                hasErrors = true;
-            } else if (password !== confirmPassword) {
-                showError('signupConfirmPasswordError', 'As senhas não coincidem');
-                hasErrors = true;
-            } else {
-                clearError('signupConfirmPasswordError');
-            }
-            
-            if (!hasErrors) {
-                const signupData = {
-                    name: name,
-                    email: email,
-                    password: password 
-                };
-                
-                console.log('Signup data for PostgreSQL:', signupData);
-                showSuccessPopup('Cadastro realizado com sucesso! 🎉');
-                
-            }
-        });
+    if (!confirmPassword) {
+        showError('signupConfirmPasswordError', 'Confirmação de senha é obrigatória');
+        hasErrors = true;
+    } else if (password !== confirmPassword) {
+        showError('signupConfirmPasswordError', 'As senhas não coincidem');
+        hasErrors = true;
+    } else {
+        clearError('signupConfirmPasswordError');
+    }
+    
+    if (!hasErrors) {
+        const signupData = {
+            name: name,
+            email: email,
+            password: password 
+        };
+        
+        console.log('Signup data for PostgreSQL:', signupData);
+        showSuccessPopup('Cadastro realizado com sucesso! 🎉');
+    }
+});
     </script>
 </body>
 </html>
