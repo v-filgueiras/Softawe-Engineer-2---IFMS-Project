@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - IFMS | Instituto Federal de Mato Grosso do Sul</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            color: #90EE90;
+        }
+
+        .btn-primary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border: 2px solid white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: white;
+            color: #228B22;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 80px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #228B22;
+            text-align: center;
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #228B22;
+        }
+
+        .card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        /* Stats */
+        .stats {
+            background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #228B22;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: #228B22;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #228B22;
+        }
+
+        .timeline-year {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #228B22;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer h2 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .footer p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .timeline {
+                padding-left: 1rem;
+            }
+
+            .timeline-item {
+                padding-left: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <span>IFMS</span>
+                </a>
+                <nav>
+                    <ul class="nav">
+                        <li><a href="sobre.html" class="active">Sobre</a></li>
+                        <li><a href="servicos.html">Serviços</a></li>
+                        <li><a href="projetos.html">Projetos</a></li>
+                    </ul>
+                </nav>
+                <a href="layoutValidation.html" class="btn-primary">Cadastre-se</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Sobre o IFMS</h1>
+            <p>Conheça nossa história, missão e valores que nos guiam na formação de profissionais qualificados para o mercado de trabalho.</p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="section">
+                <h2>Nossa Missão</h2>
+                <p>O Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso do Sul (IFMS) tem como missão promover a educação profissional, científica e tecnológica, pública, gratuita e de qualidade, por meio do ensino, pesquisa e extensão, formando cidadãos para atuarem no mundo do trabalho e na construção de uma sociedade democrática, justa e sustentável.</p>
+            </section>
+
+            <section class="section">
+                <h2>Nossos Valores</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">🚀</div>
+                        <h4>Inovação</h4>
+                        <p>Buscamos constantemente novas ideias, tecnologias e metodologias para transformar a educação e contribuir com soluções criativas.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">⚖️</div>
+                        <h4>Ética</h4>
+                        <p>Atuamos com integridade, respeito e responsabilidade, prezando pela transparência em todas as nossas ações.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🌱</div>
+                        <h4>Sustentabilidade</h4>
+                        <p>Promovemos práticas sustentáveis e formamos cidadãos conscientes de sua responsabilidade ambiental.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🤝</div>
+                        <h4>Inclusão</h4>
+                        <p>Garantimos acesso igualitário à educação, respeitando a diversidade e promovendo a inclusão social.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🎯</div>
+                        <h4>Excelência</h4>
+                        <p>Buscamos a excelência em todos os nossos processos educacionais, administrativos e de pesquisa.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🏛️</div>
+                        <h4>Compromisso Regional</h4>
+                        <p>Contribuímos para o desenvolvimento econômico, social e cultural das regiões atendidas pelo IFMS.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <section class="stats">
+        <div class="container">
+            <h2>IFMS em Números</h2>
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Campi</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">15,000+</div>
+                    <div class="stat-label">Estudantes</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">800+</div>
+                    <div class="stat-label">Professores</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Cursos</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Anos de História</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="main-content">
+        <div class="container">
+            <section class="section">
+                <h2>Nossa História</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2008</div>
+                        <div class="timeline-content">
+                            <h4>Criação do IFMS</h4>
+                            <p>O Instituto Federal de Mato Grosso do Sul foi criado pela Lei nº 11.892, de 29 de dezembro de 2008, como resultado da expansão e reestruturação da Rede Federal de Educação Profissional, Científica e Tecnológica.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010</div>
+                        <div class="timeline-content">
+                            <h4>Início das Atividades</h4>
+                            <p>Início das atividades educacionais com os primeiros cursos técnicos e superiores, estabelecendo as bases para a educação profissional no estado.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2015</div>
+                        <div class="timeline-content">
+                            <h4>Expansão dos Campi</h4>
+                            <p>Expansão significativa com a inauguração de novos campi em diferentes regiões do estado, ampliando o acesso à educação profissional.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <h4>Transformação Digital</h4>
+                            <p>Adaptação às novas tecnologias educacionais e implementação de metodologias inovadoras de ensino, especialmente durante a pandemia.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-content">
+                            <h4>Futuro Sustentável</h4>
+                            <p>Consolidação como referência em educação profissional e tecnológica, com foco em sustentabilidade, inovação e desenvolvimento regional.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <h2>Faça Parte da Nossa História</h2>
+            <p>Junte-se a nós na construção do futuro da educação profissional e tecnológica em Mato Grosso do Sul.</p>
+            <a href="layoutValidation.html" class="btn-primary">Cadastre-se Agora</a>
+        </div>
+    </footer>
+</body>
+</html>
