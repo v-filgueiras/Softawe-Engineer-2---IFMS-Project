@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+    <link rel="stylesheet" href="sass/styles.css">
+    <title>Projetos | IFMS - Instituto Federal do Mato Grosso do Sul</title>
+    <style>
+        .projects-hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+        
+        .projects-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .projects-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .project-card:nth-child(2n) .project-image {
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .project-card:nth-child(3n) .project-image {
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .project-card:nth-child(4n) .project-image {
+            background: linear-gradient(45deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .project-card:nth-child(5n) .project-image {
+            background: linear-gradient(45deg, #fa709a 0%, #fee140 100%);
+        }
+        
+        .project-card:nth-child(6n) .project-image {
+            background: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1e3c72;
+        }
+        
+        .project-area {
+            color: #F94F4F;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .project-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-tag {
+            background: #f0f0f0;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            color: #F94F4F;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .project-link:hover {
+            color: #d63384;
+        }
+        
+        .project-link svg {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-link:hover svg {
+            transform: translateX(4px);
+        }
+        
+        .categories {
+            text-align: center;
+            padding: 2rem 0;
+            background: #f8f9fa;
+        }
+        
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .category-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .category-btn:hover,
+        .category-btn.active {
+            background: #F94F4F;
+            color: white;
+            border-color: #F94F4F;
+        }
+        
+        .stats-section {
+            background: #1e3c72;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #F94F4F;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .cta-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .button--cta {
+            background: #F94F4F;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .button--cta:hover {
+            background: #d63384;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(249, 79, 79, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .projects-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                padding: 2rem 1rem;
+            }
+            
+            .category-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid_wrapper">
+        <header class="header">
+            <a class="logo" href="index.html">
+                <span class="sr-only">Creative - Homepage</span>
+                <img src="./assets/desktop/ifms-marca-2015.png" alt="IFMS logo" />
+            </a>
+            <div class="menu">
+                <button class="hamburger-menu mobile-only" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div class="mobile-nav" id="mobile-navigation">
+                    <nav aria-label="Main">
+                        <ul>
+                            <li><a href="sobre.html" class="link">Sobre</a></li>
+                            <li><a href="servicos.html" class="link">Serviços</a></li>
+                            <li><a href="projetos.html" class="link">Projetos</a></li>
+                        </ul>
+                    </nav>
+                    <button class="button--menu button--primary">
+                        Schedule a Call
+                    </button>
+                </div>
+
+                <div class="desktop-nav tablet-desktop">
+                    <nav aria-label="Main">
+                        <ul>
+                            <li><a href="sobre.html" class="link" title="About">Sobre</a></li>
+                            <li><a href="servicos.html" class="link" title="Service">Serviços</a></li>
+                            <li><a href="projetos.html" class="link" title="Projects">Projetos</a></li>
+                        </ul>
+                        <a href="layoutValidation.html" class="button--menu button--secondary">
+                            Cadastre-se
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="projects-hero">
+                <div class="container">
+                    <h1>Nossos Projetos</h1>
+                    <p>Conheça os projetos desenvolvidos pelos alunos e professores do IFMS, aplicando conhecimento teórico em soluções práticas e inovadoras.</p>
+                </div>
+            </section>
+
+            <section class="categories">
+                <div class="container">
+                    <h2>Explore por Categoria</h2>
+                    <div class="category-filters">
+                        <button class="category-btn active" data-category="all">Todos</button>
+                        <button class="category-btn" data-category="tecnologia">Tecnologia</button>
+                        <button class="category-btn" data-category="sustentabilidade">Sustentabilidade</button>
+                        <button class="category-btn" data-category="inovacao">Inovação</button>
+                        <button class="category-btn" data-category="educacao">Educação</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="projects-grid">
+                <div class="project-card" data-category="tecnologia">
+                    <div class="project-image">
+                        <span>Sistema de Gestão</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Sistema de Gestão Acadêmica</h3>
+                        <div class="project-area">Tecnologia da Informação</div>
+                        <p class="project-description">
+                            Desenvolvimento de um sistema completo para gestão acadêmica, incluindo controle de notas, frequência e comunicação entre professores e alunos.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                        <a href="#" class="project-link">
+                            Ver projeto
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="sustentabilidade">
+                    <div class="project-image">
+                        <span>Energia Solar</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Monitoramento de Energia Solar</h3>
+                        <div class="project-area">Energias Renováveis</div>
+                        <p class="project-description">
+                            Sistema IoT para monitoramento em tempo real da geração de energia solar, com análise de eficiência e previsão de manutenção.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Arduino</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">IoT</span>
+                        </div>
+                        <a href="#" class="project-link">
+                            Ver projeto
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="inovacao">
+                    <div class="project-image">
+                        <span>App Mobile</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">App de Mobilidade Urbana</h3>
+                        <div class="project-area">Desenvolvimento Mobile</div>
+                        <p class="project-description">
+                            Aplicativo para otimização de rotas de transporte público, integrando dados em tempo real e machine learning para melhor experiência do usuário.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <a href="#" class="project-link">
+                            Ver projeto
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="educacao">
+                    <div class="project-image">
+                        <span>Plataforma EAD</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Plataforma de Ensino Digital</h3>
+                        <div class="project-area">Educação a Distância</div>
+                        <p class="project-description">
+                            Plataforma completa para ensino à distância com recursos interativos, gamificação e analytics para acompanhamento do progresso estudantil.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                        <a href="#" class="project-link">
+                            Ver projeto
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="tecnologia">
+                    <div class="project-image">
+                        <span>Automação</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Sistema de Automação Industrial</h3>
+                        <div class="project-area">Automação</div>
+                        <p class="project-description">
+                            Desenvolvimento de sistema para controle automatizado de processos industriais, incluindo sensores, atuadores e interface de monitoramento.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">PLC</span>
+                            <span class="tech-tag">SCADA</span>
+                            <span class="tech-tag">C#</span>
+                        </div>
+                        <a href="#" class="project-link">
+                            Ver projeto
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="sustentabilidade">
+                    <div class="project-image">
+                        <span>Hidroponia</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Sistema de Cultivo Hidropônico</h3>
+                        <div class="project-area">Agricultura Sustentável</div>
+                        <p class="project-description">
+                            Sistema automatizado para cultivo hidropônico com controle de pH, nutrientes e irrigação, maximizando a produtividade com menor impacto ambiental.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Raspberry Pi</span>
+                            <span class="tech-tag">Sensores</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                        <a href="#" class="project-link">
+                            Ver projeto
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stats-section">
+                <div class="container">
+                    <h2>Nossos Números</h2>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Projetos Desenvolvidos</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">80+</span>
+                            <span class="stat-label">Estudantes Envolvidos</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">25+</span>
+                            <span class="stat-label">Professores Orientadores</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">95%</span>
+                            <span class="stat-label">Taxa de Sucesso</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <div class="cta-content">
+                    <h2 class="cta-title">Tem uma ideia de projeto?</h2>
+                    <p class="cta-text">Junte-se a nós e transforme suas ideias em realidade. O IFMS oferece toda a estrutura e orientação necessária para o desenvolvimento de projetos inovadores.</p>
+                    <a href="layoutValidation.html" class="button--cta">Cadastre-se e Participe</a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer footer__container">
+            <h2>Vamos construir o futuro do ensino tecnológico juntos.</h2>
+            <button href="layoutValidation.html" class="button--primary" onclick="window.location.href='./layoutValidation.html'">
+                Cadastre-se já!
+            </button>
+        </footer>
+    </div>
+
+    <script>
+        // Filtro de categorias
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const category = btn.dataset.category;
+                
+                projectCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Mobile navigation
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const mobileNav = document.querySelector('.mobile-nav');
+
+        if (hamburgerMenu) {
+            hamburgerMenu.addEventListener('click', () => {
+                mobileNav.classList.toggle('active');
+            });
+        }
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
