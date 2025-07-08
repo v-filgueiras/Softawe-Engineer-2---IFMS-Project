@@ -2,6 +2,8 @@
 
 <div align="center">
   <img src="./assets/desktop/ifms-marca-2015.png" alt="IFMS Logo" width="200px">
+
+  
   
   [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
   [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
@@ -50,9 +52,3 @@ O projeto apresenta informações sobre cursos, valores institucionais, projetos
 - **Facilitar** o acesso a informações institucionais
 - **Promover** o engajamento de futuros estudantes
 - **Demonstrar** competências técnicas em desenvolvimento web
-
-
-<div align="center">
-  <p>Desenvolvido com 💙 para o <strong>Instituto Federal do Mato Grosso do Sul</strong></p>
-  <p>Contribuindo para o futuro da educação tecnológica</p>
-</div>
